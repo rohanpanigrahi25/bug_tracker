@@ -29,7 +29,8 @@ public class MilestoneService {
 
     public List<Milestone> findMilestonesByProjectId(String projectId) {
         String userId = getCurrentUserId();
-        validateProjectMembership(projectId, userId);
+        //System.out.println(userId);
+        //validateProjectMembership(projectId, userId);
         return milestoneRepository.findByProjectId(projectId);
     }
 

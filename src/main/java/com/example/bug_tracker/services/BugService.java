@@ -27,7 +27,7 @@ public class BugService {
     @Transactional
     public Bug createBug(@Valid Bug bug) {
         String userId = getCurrentUserId();
-        validateProjectMembership(bug.getProjectId(), userId);
+        //validateProjectMembership(bug.getProjectId(), userId); is validation for project membership required while creating a bug
         bug.setReporterId(userId);
         bug.setStatus(Bug.Status.OPEN);
         bug.setTimestamp(LocalDateTime.now());
@@ -52,7 +52,7 @@ public class BugService {
             }
             validateProjectMembership(bug.getProjectId(), assigneeId);
         });
-        bug.getAssigneeIds().addAll(assigneeIds);
+        bug.getAssigneeIds().addAll(assigneeIds); //need to update as it also adds the existing assignee id
         Bug updatedBug = bugRepository.save(bug);
         assigneeIds.forEach(assigneeId ->
                 notificationService.createNotification(

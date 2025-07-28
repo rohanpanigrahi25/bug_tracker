@@ -61,7 +61,6 @@ public class AuthService implements UserDetailsService {
 
         // Check if the requested role is ADMIN
         if (user.getRole() == User.Role.ADMIN) {
-            // Only allow ADMIN role if the current user is an ADMIN
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication == null || !authentication.isAuthenticated()) {
                 throw new SecurityException("Only authenticated admins can create admin users");
@@ -73,7 +72,6 @@ public class AuthService implements UserDetailsService {
             }
         }
 
-        // Set role to USER if not specified
         if (user.getRole() == null) {
             user.setRole(User.Role.USER);
         }

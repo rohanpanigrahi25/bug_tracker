@@ -21,6 +21,7 @@ public class MilestoneController {
         return ResponseEntity.ok(milestoneService.createMilestone(milestone));
     }
 
+    //working only for admin users but intended to work for all the users who are in the project
     @GetMapping
     public ResponseEntity<List<Milestone>> getMilestones(@RequestParam String projectId) {
         return ResponseEntity.ok(milestoneService.findMilestonesByProjectId(projectId));

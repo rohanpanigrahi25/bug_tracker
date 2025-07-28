@@ -31,7 +31,7 @@ public class CommentService {
         String userId = getCurrentUserId();
         Bug bug = bugRepository.findById(bugId)
                 .orElseThrow(() -> new IllegalArgumentException("Bug not found"));
-        validateProjectMembership(bug.getProjectId(), userId);
+        //validateProjectMembership(bug.getProjectId(), userId); //users can add comments even tho they are not part of the project
         comment.setBugId(bugId);
         comment.setUserId(userId);
         comment.setTimestamp(LocalDateTime.now());
